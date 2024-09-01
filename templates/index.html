@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People Counting</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload a Video or Use Live Camera</h1>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <div>
+                <input type="file" name="file" accept="video/*">
+            </div>
+            <div>
+                <input type="checkbox" id="live_feed" name="live_feed" value="1">
+                <label for="live_feed">Use Live Camera Feed</label>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+
+        {% if result_img %}
+        <h2>Result:</h2>
+        <video width="640" height="480" controls>
+            <source src="{{ url_for('static', filename=result_img) }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        {% endif %}
+    </div>
+</body>
+</html>
